@@ -1,0 +1,18 @@
+/* close symbol in modal */
+button.close span {
+  color: white !important;
+  font-size: 2rem !important;
+}
+
+/* close btn in modal footer */
+.modal-footer button:nth-child(1) {
+  background: transparent;
+  border: none !important;
+  color: black;
+  font-size: 1.1rem;
+}
+
+/* communication text area */
+textarea[name="communication"] {
+  height: 200px;
+}
