@@ -20,7 +20,7 @@ const FormInput: React.FC<IFormInput> = ({ label, name, errors, register }) => {
           ref={register(
             name === "email"
               ? emailProps
-              : name === "phone"
+              : name === "mobile"
               ? phoneProps
               : name === "firstName" || name === "name"
               ? nameProps

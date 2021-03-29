@@ -12,6 +12,12 @@ button.close span {
   font-size: 1.1rem;
 }
 
+/* delete button */
+.modal-footer button.delete {
+  background-color: red;
+  color: white;
+}
+
 /* communication text area */
 textarea[name="communication"] {
   height: 200px;

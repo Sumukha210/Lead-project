@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import FormInput from "./FormInput";
 import CustomBtn from "../common/CustomBtn";
 import Button from "react-bootstrap/Button";
+import { useAppDispatch } from "../../Redux/hooks";
+import { saveLead } from "../../Redux/Lead/LeadSlice";
 
 export type Inputs = {
   example: string;
@@ -15,10 +17,14 @@ export interface IAddModalContent {
 }
 
 const AddLeadModalContent: React.FC<IAddModalContent> = ({ handleClose }) => {
-  const { register, handleSubmit, errors } = useForm<Inputs>();
+  const { register, handleSubmit, errors, reset } = useForm<Inputs>();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (data: any) => {
     console.log(data);
+    dispatch(saveLead(data));
+    reset();
+    handleClose();
   };
 
   return (
@@ -53,7 +59,7 @@ const AddLeadModalContent: React.FC<IAddModalContent> = ({ handleClose }) => {
               label="mobile number"
               register={register}
               errors={errors}
-              name="phone"
+              name="mobile"
             />
           </div>
 

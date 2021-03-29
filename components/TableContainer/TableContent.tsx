@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useAppDispatch } from "../../Redux/hooks";
-import { deleteSliceById } from "../../Redux/Lead/LeadSlice";
+import { updateLead } from "../../Redux/Lead/LeadSlice";
 import CustomBtn from "../common/CustomBtn";
 import CustomModal from "../CustomModal";
+import DeleteLeadModalContent from "../CustomModal/DeleteLeadModal";
 import UpdateModalContent from "../CustomModal/UpdateModal";
 
 export interface ITableContent {
@@ -13,8 +13,7 @@ export interface ITableContent {
   mobile: string;
   locationType: string;
   locationString: string;
-  id: string;
-  // handleShowUpdateModal: Function;
+  _id: string;
 }
 
 const TableContent: React.FC<ITableContent> = ({
@@ -24,32 +23,36 @@ const TableContent: React.FC<ITableContent> = ({
   mobile,
   locationType,
   locationString,
-  id,
-  // handleShowUpdateModal,
+  _id,
 }) => {
+  //related to update modal
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const dispatch = useDispatch();
 
+  //related to delete modal
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const dispatch = useAppDispatch();
+
+  //related to update modal starts
   const handleMarkUpdate = () => {
-    console.log("mark update", id);
-    handleShowUpdateModal(id);
-  };
-
-  const handleMarkDelete = () => {
-    console.log("mark delete", id);
-    dispatch(deleteSliceById(id));
+    setShowUpdateModal(true);
   };
 
   const handleCloseUpdateModal = () => setShowUpdateModal(false);
 
-  const handleShowUpdateModal = (id: string) => {
-    setShowUpdateModal(true);
-    console.log("id is", id);
+  const handleFormSubmit = (_id: string, data: string) => {
+    dispatch(updateLead({ id: _id, data }));
+  };
+  //related to update modal ends
+
+  // related to delete modal starts
+  const handleMarkDelete = () => {
+    setShowDeleteModal(true);
   };
 
-  const handleFormSubmit = (id: string, data: string) => {
-    console.log("form submit message and id is", id, data);
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
   };
+  // related to delete modal ends
 
   return (
     <>
@@ -58,9 +61,19 @@ const TableContent: React.FC<ITableContent> = ({
         show={showUpdateModal}
         handleClose={handleCloseUpdateModal}>
         <UpdateModalContent
-          id={id}
+          _id={_id}
           handleClose={handleCloseUpdateModal}
           handleFormSubmit={handleFormSubmit}
+        />
+      </CustomModal>
+
+      <CustomModal
+        name="do you wish to delete this lead"
+        show={showDeleteModal}
+        handleClose={handleCloseDeleteModal}>
+        <DeleteLeadModalContent
+          _id={_id}
+          handleClose={handleCloseDeleteModal}
         />
       </CustomModal>
 

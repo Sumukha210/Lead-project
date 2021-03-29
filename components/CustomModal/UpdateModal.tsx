@@ -6,7 +6,7 @@ import CustomBtn from "../common/CustomBtn";
 import { IAddModalContent } from "./AddLeadModal";
 
 interface IUpdateModal extends IAddModalContent {
-  id?: string;
+  _id?: string;
   handleFormSubmit: any;
 }
 
@@ -14,13 +14,16 @@ type Inputs = { communication: string };
 
 const UpdateModalContent: React.FC<IUpdateModal> = ({
   handleClose,
-  id,
+  _id,
   handleFormSubmit,
 }) => {
-  const { register, handleSubmit, errors } = useForm<Inputs>();
+  const { register, handleSubmit, errors, reset } = useForm<Inputs>();
 
   const onSubmit = (data: any) => {
-    handleFormSubmit(id, data);
+    console.log(data.communication);
+    handleFormSubmit(_id, data.communication);
+    reset();
+    handleClose();
   };
 
   return (

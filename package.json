@@ -8,9 +8,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
+    "@types/mongoose": "^5.10.4",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
-    "mongoose": "^5.9.13",
+    "mongoose": "^5.12.2",
     "next": "latest",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",

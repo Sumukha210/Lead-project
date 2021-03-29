@@ -18,29 +18,28 @@ const TableContainer = () => {
               </tr>
             </thead>
             <tbody>
-              {leadData &&
-                leadData.map(
-                  ({
-                    firstName,
-                    lastName,
-                    email,
-                    mobile,
-                    locationString,
-                    locationType,
-                    id,
-                  }: ITableContent) => (
-                    <TableContent
-                      key={id}
-                      firstName={firstName}
-                      lastName={lastName}
-                      email={email}
-                      mobile={mobile}
-                      locationType={locationType}
-                      locationString={locationString}
-                      id={id}
-                    />
-                  )
-                )}
+              {leadData.map(
+                ({
+                  firstName,
+                  lastName,
+                  email,
+                  mobile,
+                  locationString,
+                  locationType,
+                  _id,
+                }: ITableContent) => (
+                  <TableContent
+                    key={_id}
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                    mobile={mobile}
+                    locationType={locationType}
+                    locationString={locationString}
+                    _id={_id}
+                  />
+                )
+              )}
             </tbody>
           </Table>
         </div>

@@ -21,7 +21,7 @@ const CustomModal: React.FC<ICustomModal> = ({
         size="lg"
         aria-labelledby="large-size-modal">
         <Modal.Header closeButton className="bg-dark text-light">
-          <Modal.Title>{name}</Modal.Title>
+          <Modal.Title className="text-capitalize">{name}</Modal.Title>
         </Modal.Header>
 
         {children}
